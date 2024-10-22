@@ -1,0 +1,11 @@
+<h1>Lista de Turnos</h1>
+<a href="{% url 'crear_turno' %}">Crear Nuevo Turno</a>
+<ul>
+    {% for turno in turnos %}
+        <li>
+            Turno No. {{ turno.numero_Turno }} - {{ turno.usuario.nombres }} {{ turno.usuario.apellidos }} 
+            <a href="{% url 'editar_turno' turno.id %}">Editar</a>
+            <a href="{% url 'eliminar_turno' turno.id %}">Eliminar</a>
+        </li>
+    {% endfor %}
+</ul>

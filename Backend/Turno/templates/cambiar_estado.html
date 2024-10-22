@@ -1,0 +1,14 @@
+<!-- cambiar_estado.html -->
+<h1>Cambiar Estado del Turno</h1>
+<form method="post">
+    {% csrf_token %}
+    <label for="estado">Nuevo Estado:</label>
+    <select name="estado" id="estado">
+        <option value="pendiente">Pendiente</option>
+        <option value="completado">Completado</option>
+        <option value="cancelado">Cancelado</option>
+        <!-- Agrega otros estados que tengas en tu modelo -->
+    </select>
+    <button type="submit">Guardar Cambios</button>
+</form>
+<a href="{% url 'listar_turnos' %}">Cancelar</a>

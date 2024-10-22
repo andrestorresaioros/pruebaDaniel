@@ -1,0 +1,40 @@
+<!-- turno_list.html -->
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lista de Turnos</title>
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+</head>
+<body>
+    <h1>Lista de Turnos</h1>
+    <table>
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Estado</th>
+                <th>Hora de Creación</th>
+                <th>Acciones</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for turno in turnos %}
+                <tr>
+                    <td>{{ turno.id }}</td>
+                    <td>{{ turno.estado }}</td>
+                    <td>{{ turno.hora_creacion_turno }}</td>
+                    <td>
+                        <a href="{% url 'editar_turno' turno.id %}">Editar</a>
+                        <form action="{% url 'eliminar_turno' turno.id %}" method="POST" style="display:inline;">
+                            {% csrf_token %}
+                            <button type="submit">Eliminar</button>
+                        </form>
+                    </td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    <a href="{% url 'crear_turno' %}">Crear nuevo turno</a>
+</body>
+</html>

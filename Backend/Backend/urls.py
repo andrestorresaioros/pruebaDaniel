@@ -16,7 +16,30 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
+from Usuario.views import validar_usuario, listar_usuarios
+from Turno.views import listar_turnos, cambiar_estado, listar_turnos_pendientes
+from Usuario.views import crear_usuario, listar_usuarios, editar_usuario, eliminar_usuario
+from Turno.views import crear_turno, listar_turnos, editar_turno, eliminar_turno
+from Turno.views import cambiar_estado, listar_Turnos_Creados
 
 urlpatterns = [
     path('admin/', admin.site.urls),
+
+    path('api/usuario/validar/<str:numero_identificacion>/', validar_usuario, name='validar_usuario'),
+    path('api/turnos/', listar_Turnos_Creados, name='listar_turnos_creados'),
+
+    path('turnos/pendientes/', listar_turnos_pendientes, name='listar_turnos_pendientes'),
+    path('turno/cambiar-estado/<int:turno_id>/', cambiar_estado, name='cambiar_estado'),
+    
+   
+    path('usuarios/', listar_usuarios, name='listar_usuarios'),
+    path('usuarios/crear/', crear_usuario, name='crear_usuario'),
+    path('usuarios/editar/<int:usuario_id>/', editar_usuario, name='editar_usuario'),
+    path('usuarios/eliminar/<int:usuario_id>/', eliminar_usuario, name='eliminar_usuario'),
+
+    path('turnos/', listar_turnos, name='listar_turnos'),
+    path('turnos/crear/', crear_turno, name='crear_turno'),
+    path('turnos/editar/<int:turno_id>/', editar_turno, name='editar_turno'),
+    path('turnos/eliminar/<int:turno_id>/', eliminar_turno, name='eliminar_turno'),
+
 ]

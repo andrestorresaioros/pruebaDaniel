@@ -37,6 +37,9 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'Usuario',
+    'Turno',
+    'rest_framework',
 ]
 
 MIDDLEWARE = [
@@ -76,11 +79,11 @@ WSGI_APPLICATION = 'Backend.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'railway',  # Nombre de la base de datos
-        'USER': 'postgres',  # Usuario
-        'PASSWORD': 'yNKRRFvrOshwVOyKiINbGNLPKPEDXsAt',  # Contraseña
-        'HOST': 'junction.proxy.rlwy.net',  # Usa la URL pública
-        'PORT': '59350',  # Puerto público
+        'NAME': 'railway', 
+        'USER': 'postgres',  
+        'PASSWORD': 'yNKRRFvrOshwVOyKiINbGNLPKPEDXsAt',  
+        'HOST': 'junction.proxy.rlwy.net', 
+        'PORT': '59350', 
     }
 }
 

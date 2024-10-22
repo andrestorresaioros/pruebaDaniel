@@ -1,0 +1,7 @@
+<h1>Eliminar Turno</h1>
+<p>¿Estás seguro que deseas eliminar el turno número {{ turno.numero_Turno }}?</p>
+<form method="post">
+    {% csrf_token %}
+    <button type="submit">Eliminar</button>
+    <a href="{% url 'listar_turnos' %}">Cancelar</a>
+</form>

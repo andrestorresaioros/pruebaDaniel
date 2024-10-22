@@ -1,0 +1,6 @@
+<h1>{% if form.instance.id %}Editar Turno{% else %}Crear Turno{% endif %}</h1>
+<form method="post">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit">Guardar</button>
+</form>
