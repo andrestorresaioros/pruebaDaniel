@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lista de Turnos</title>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+    <div class="container mt-5">
+        <h1 class="text-center mb-4">Lista de Turnos</h1>
+        <a href="{% url 'crear_turno' %}" class="btn btn-primary mb-3">Crear Nuevo Turno</a>
+        <ul class="list-group">
+            {% for turno in turnos %}
+                <li class="list-group-item d-flex justify-content-between align-items-center">
+                    Turno No. {{ turno.numero_Turno }} - {{ turno.usuario.nombres }} {{ turno.usuario.apellidos }} 
+                    <span>
+                        <a href="{% url 'editar_turno' turno.id %}" class="btn btn-warning btn-sm">Editar</a>
+                        <a href="{% url 'eliminar_turno' turno.id %}" class="btn btn-danger btn-sm">Eliminar</a>
+                    </span>
+                </li>
+            {% endfor %}
+        </ul>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.0.7/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>
