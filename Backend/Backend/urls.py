@@ -16,29 +16,32 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
-from Usuario.views import validar_usuario, listar_usuarios,listar_usuarios_anonimos
+#from Usuario.views import validar_usuario, listar_usuarios,listar_usuarios_anonimos
 from Turno.views import listar_turnos, cambiar_estado, listar_turnos_pendientes
-from Usuario.views import crear_usuario, listar_usuarios, editar_usuario, eliminar_usuario
+#from Usuario.views import crear_usuario, listar_usuarios, editar_usuario, eliminar_usuario
 from Turno.views import crear_turno, listar_turnos, editar_turno, eliminar_turno
 from Turno.views import cambiar_estado, listar_Turnos_Creados
 from django.conf.urls.static import static
 from django.conf import settings
+from Usuario.views import ValidarUsuarioView, ListarUsuariosView, ListarUsuariosAnonimosView, CrearUsuarioView, EditarUsuarioView, EliminarUsuarioView
 
 
 urlpatterns = [
     path('admin/', admin.site.urls),
 
-    path('api/usuario/validar/<str:numero_identificacion>/', validar_usuario, name='validar_usuario'),
+    path('validar_usuario/<int:numero_identificacion>/', ValidarUsuarioView.as_view(), name='validar_usuario'),
     path('api/turnos/', listar_Turnos_Creados, name='listar_turnos_creados'),
 
     path('turnos/pendientes/', listar_turnos_pendientes, name='listar_turnos_pendientes'),
     path('turno/cambiar-estado/<int:turno_id>/', cambiar_estado, name='cambiar_estado'),
-    path('usuarios/anonimos/', listar_usuarios_anonimos, name='listar_usuarios_anonimos'),
+    path('usuarios_anonimos/', ListarUsuariosAnonimosView.as_view(), name='listar_usuarios_anonimos'),
+
    
-    path('usuarios/', listar_usuarios, name='listar_usuarios'),
-    path('usuarios/crear/', crear_usuario, name='crear_usuario'),
-    path('usuarios/editar/<int:usuario_id>/', editar_usuario, name='editar_usuario'),
-    path('usuarios/eliminar/<int:usuario_id>/', eliminar_usuario, name='eliminar_usuario'),
+    path('usuarios/', ListarUsuariosView.as_view(), name='listar_usuarios'),
+    path('usuarios/crear/', CrearUsuarioView.as_view(), name='crear_usuario'),
+    path('usuarios/editar/<int:pk>/', EditarUsuarioView.as_view(), name='editar_usuario'),
+    path('usuarios/eliminar/<int:pk>/', EliminarUsuarioView.as_view(), name='eliminar_usuario'),
+
 
     path('turnos/', listar_turnos, name='listar_turnos'),
     path('turnos/crear/', crear_turno, name='crear_turno'),
