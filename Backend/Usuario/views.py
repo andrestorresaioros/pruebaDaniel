@@ -12,6 +12,10 @@ def validar_usuario(request, numero_identificacion):
     except Usuario.DoesNotExist:
         return Response({'exists': False})
 
+def listar_usuarios_anonimos(request):
+    usuarios = Usuario.objects.all()  # Obtener todos los usuarios
+    return render(request, 'usuario_list_anonimo.html', {'usuarios': usuarios})
+
 def listar_usuarios(request):
     usuarios = Usuario.objects.all()
     return render(request, 'usuario_list.html', {'usuarios': usuarios})

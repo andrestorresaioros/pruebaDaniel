@@ -1,11 +1,33 @@
-<h1>Lista de Usuarios</h1>
-<a href="{% url 'crear_usuario' %}">Crear Nuevo Usuario</a>
-<ul>
-    {% for usuario in usuarios %}
-        <li>
-            {{ usuario.nombres }} {{ usuario.apellidos }} 
-            <a href="{% url 'editar_usuario' usuario.id %}">Editar</a>
-            <a href="{% url 'eliminar_usuario' usuario.id %}">Eliminar</a>
-        </li>
-    {% endfor %}
-</ul>
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lista de Usuarios</title>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+    <div class="container mt-5">
+        <h1 class="text-center mb-4">Lista de Usuarios</h1>
+        <a href="{% url 'crear_usuario' %}" class="btn btn-primary mb-3">Crear Nuevo Usuario</a>
+        <ul class="list-group">
+            {% for usuario in usuarios %}
+                <li class="list-group-item d-flex justify-content-between align-items-center">
+                    {{ usuario.nombres }} {{ usuario.apellidos }}
+                    <div>
+                        <a href="{% url 'editar_usuario' usuario.id %}" class="btn btn-warning btn-sm">Editar</a>
+                        <form action="{% url 'eliminar_usuario' usuario.id %}" method="POST" style="display:inline;">
+                            {% csrf_token %}
+                            <a href="{% url 'eliminar_usuario' usuario.id %}"class="btn btn-danger btn-sm">Eliminar</a>
+                        </form>
+                    </div>
+                </li>
+            {% endfor %}
+        </ul>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.0.7/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>

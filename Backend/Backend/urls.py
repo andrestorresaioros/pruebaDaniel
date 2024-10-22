@@ -16,11 +16,14 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
-from Usuario.views import validar_usuario, listar_usuarios
+from Usuario.views import validar_usuario, listar_usuarios,listar_usuarios_anonimos
 from Turno.views import listar_turnos, cambiar_estado, listar_turnos_pendientes
 from Usuario.views import crear_usuario, listar_usuarios, editar_usuario, eliminar_usuario
 from Turno.views import crear_turno, listar_turnos, editar_turno, eliminar_turno
 from Turno.views import cambiar_estado, listar_Turnos_Creados
+from django.conf.urls.static import static
+from django.conf import settings
+
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -30,7 +33,7 @@ urlpatterns = [
 
     path('turnos/pendientes/', listar_turnos_pendientes, name='listar_turnos_pendientes'),
     path('turno/cambiar-estado/<int:turno_id>/', cambiar_estado, name='cambiar_estado'),
-    
+    path('usuarios/anonimos/', listar_usuarios_anonimos, name='listar_usuarios_anonimos'),
    
     path('usuarios/', listar_usuarios, name='listar_usuarios'),
     path('usuarios/crear/', crear_usuario, name='crear_usuario'),
@@ -43,3 +46,5 @@ urlpatterns = [
     path('turnos/eliminar/<int:turno_id>/', eliminar_turno, name='eliminar_turno'),
 
 ]
+if settings.DEBUG:
+    urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

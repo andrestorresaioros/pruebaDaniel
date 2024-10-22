@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lista de Usuarios Anónimos</title>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        .usuario {
+            margin: 20px;
+            border: 1px solid #ccc;
+            padding: 10px;
+            border-radius: 5px; /* Bordes redondeados */
+            background-color: #f8f9fa; /* Color de fondo */
+        }
+        .imagen {
+            max-width: 100px; /* Ajusta el tamaño de la imagen */
+            max-height: 100px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container mt-5">
+        <h1 class="text-center mb-4">Lista de Usuarios (Anónimos)</h1>
+        <div class="row">
+            {% for usuario in usuarios %}
+                <div class="col-md-4">
+                    <div class="usuario text-center">
+                        {% if usuario.foto %}
+                            <img src="{{ usuario.foto.url }}" alt="Imagen de usuario" class="imagen img-fluid">
+                        {% else %}
+                            <p>No hay imagen disponible.</p>
+                        {% endif %}
+                        <p><strong>Número de identificación:</strong> {{ usuario.numero_identificacion }}</p>
+                        <p><strong>Número de celular:</strong> {{ usuario.numero_celular }}</p>
+                        <p><strong>Staff:</strong> {{ usuario.staff }}</p>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.0.7/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>

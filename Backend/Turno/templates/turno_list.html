@@ -5,36 +5,72 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Lista de Turnos</title>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    <style>
+        body {
+            background-color: #f8f9fa; /* Fondo suave */
+        }
+        h1 {
+            color: #343a40; /* Color del título */
+        }
+        .card {
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1); /* Sombra de la tarjeta */
+        }
+        .table th, .table td {
+            vertical-align: middle; /* Alinear el texto en el medio */
+        }
+        .btn {
+            transition: background-color 0.3s, transform 0.2s; /* Transición suave al cambiar el color y al hacer hover */
+        }
+        .btn:hover {
+            opacity: 0.8; /* Efecto de opacidad al pasar el mouse */
+            transform: scale(1.05); /* Efecto de aumento al pasar el mouse */
+        }
+    </style>
 </head>
 <body>
-    <h1>Lista de Turnos</h1>
-    <table>
-        <thead>
-            <tr>
-                <th>ID</th>
-                <th>Estado</th>
-                <th>Hora de Creación</th>
-                <th>Acciones</th>
-            </tr>
-        </thead>
-        <tbody>
-            {% for turno in turnos %}
-                <tr>
-                    <td>{{ turno.id }}</td>
-                    <td>{{ turno.estado }}</td>
-                    <td>{{ turno.hora_creacion_turno }}</td>
-                    <td>
-                        <a href="{% url 'editar_turno' turno.id %}">Editar</a>
-                        <form action="{% url 'eliminar_turno' turno.id %}" method="POST" style="display:inline;">
-                            {% csrf_token %}
-                            <button type="submit">Eliminar</button>
-                        </form>
-                    </td>
-                </tr>
-            {% endfor %}
-        </tbody>
-    </table>
-    <a href="{% url 'crear_turno' %}">Crear nuevo turno</a>
+    <div class="container mt-5">
+        <h1 class="text-center mb-4">Lista de Turnos</h1>
+        <div class="card mb-4">
+            <div class="card-body">
+                <table class="table table-hover table-bordered">
+                    <thead class="thead-dark">
+                        <tr>
+                            <th>ID</th>
+                            <th>Estado</th>
+                            <th>Hora de Creación</th>
+                            <th>Acciones</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for turno in turnos %}
+                            <tr>
+                                <td>{{ turno.id }}</td>
+                                <td>{{ turno.estado }}</td>
+                                <td>{{ turno.hora_creacion_turno }}</td>
+                                <td>
+                                    <a href="{% url 'editar_turno' turno.id %}" class="btn btn-warning btn-sm">Editar</a>
+                                    <form action="{% url 'eliminar_turno' turno.id %}" method="POST" style="display:inline;">
+                                        {% csrf_token %}
+                                        <button type="submit" class="btn btn-danger btn-sm">Eliminar</button>
+                                    </form>
+                                </td>
+                            </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        <div class="text-center">
+            <a href="{% url 'crear_turno' %}" class="btn btn-primary btn-lg btn-block shadow" style="transition: background-color 0.3s, transform 0.2s;">
+                <i class="fas fa-plus"></i> Crear nuevo turno
+            </a>
+        </div>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.0.7/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 </body>
 </html>
