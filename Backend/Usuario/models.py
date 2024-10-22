@@ -3,7 +3,6 @@ from django.contrib.auth.models import AbstractUser
 from django.utils.text import slugify
 
 
-# Create your models here.
 class Usuario(AbstractUser):
     nombres= models.CharField(max_length=100) 
     apellidos= models.CharField(max_length=100) 
@@ -11,15 +10,14 @@ class Usuario(AbstractUser):
     numero_identificacion = models.CharField(max_length=20, unique=True)
     staff = models.BooleanField(default=False)
     foto = models.ImageField(upload_to='fotos/', null=True, blank=True)
-# Añadir related_name a los campos problemáticos
     groups = models.ManyToManyField(
         'auth.Group',
-        related_name='custom_user_set',  # Añadir un related_name personalizado
+        related_name='custom_user_set', 
         blank=True
     )
     user_permissions = models.ManyToManyField(
         'auth.Permission',
-        related_name='custom_user_permissions_set',  # Añadir un related_name personalizado
+        related_name='custom_user_permissions_set',  
         blank=True
     )
     def save(self, *args, **kwargs):
@@ -28,7 +26,6 @@ class Usuario(AbstractUser):
             username = base_username
             counter = 1
 
-            # Generar un username único
             while Usuario.objects.filter(username=username).exists():
                 username = f"{base_username}{counter}"
                 counter += 1

@@ -16,20 +16,19 @@ def listar_usuarios_anonimos(request):
     usuarios = Usuario.objects.all()  # Obtener todos los usuarios
     return render(request, 'usuario_list_anonimo.html', {'usuarios': usuarios})
 
+#CRUD
 def listar_usuarios(request):
     usuarios = Usuario.objects.all()
     return render(request, 'usuario_list.html', {'usuarios': usuarios})
 
 
-#CRUD
 def crear_usuario(request):
     if request.method == 'POST':
         form = UsuarioForm(request.POST, request.FILES)
         if form.is_valid():
-            # Aquí se crea el usuario
             nuevo_usuario = form.save(commit=False)
             nuevo_usuario.save()
-            return redirect('listar_usuarios')  # Redirige a la lista de usuarios después de crear
+            return redirect('listar_usuarios') 
     else:
         form = UsuarioForm()
     return render(request, 'usuario_form.html', {'form': form})

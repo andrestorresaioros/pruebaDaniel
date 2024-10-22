@@ -14,11 +14,7 @@ def cambiar_estado(request, turno_id):
     if request.method == 'POST':
         nuevo_estado = request.POST.get('estado')
         turno.estado = nuevo_estado
-        
-        # Obtener el objeto Usuario correspondiente
         usuario_staff = get_object_or_404(Usuario, username=request.user.username)
-        
-        # Asignar la instancia de Usuario
         turno.staff_usuario = usuario_staff
         turno.save()
         return redirect('listar_turnos')  

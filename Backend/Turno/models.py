@@ -1,7 +1,6 @@
 from django.db import models
 from Usuario.models import Usuario
 
-# Create your models here.
 class Turno(models.Model):
     ESTADO_TURNO=[
         ('Pendiente', 'Pendiente'),
