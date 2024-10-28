@@ -1,24 +1,16 @@
-<!DOCTYPE html>
-<html lang="es">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Eliminar Turno</title>
-    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
-</head>
-<body>
-    <div class="container mt-5">
-        <h1 class="text-center mb-4">Eliminar Turno</h1>
+
+{% extends 'bases.html' %}
+
+{% block title %}Eliminar Turno{% endblock %}
+
+{% block content %}
+<div class="container mt-5">
+    <h1 class="text-center mb-4">Eliminar Turno</h1>
         <p class="text-center">¿Estás seguro que deseas eliminar el turno número <strong>{{ turno.numero_Turno }}</strong>?</p>
         <form method="post" class="text-center">
             {% csrf_token %}
             <button type="submit" class="btn btn-danger">Eliminar</button>
             <a href="{% url 'listar_turnos' %}" class="btn btn-secondary">Cancelar</a>
         </form>
-    </div>
-
-    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.0.7/dist/umd/popper.min.js"></script>
-    <script src="https://stackpath.bootstrapcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-</body>
-</html>
+</div>
+{% endblock %}

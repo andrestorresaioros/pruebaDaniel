@@ -1,36 +1,10 @@
-<!DOCTYPE html>
-<html lang="es">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Lista de Turnos</title>
-    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="{% static 'css/style.css' %}">
-    <style>
-        body {
-            background-color: #f8f9fa; 
-        }
-        h1 {
-            color: #343a40; 
-        }
-        .card {
-            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1); /
-        }
-        .table th, .table td {
-            vertical-align: middle; 
-        }
-        .btn {
-            transition: background-color 0.3s, transform 0.2s; 
-        }
-        .btn:hover {
-            opacity: 0.8; 
-            transform: scale(1.05); 
-        }
-    </style>
-</head>
-<body>
-    <div class="container mt-5">
-        <h1 class="text-center mb-4">Lista de Turnos</h1>
+{% extends 'bases.html' %}
+
+{% block title %}Eliminar Turno{% endblock %}
+
+{% block content %}
+<div class="container mt-5">
+    <h1 class="text-center mb-4">Lista de Turnos</h1>
         <div class="card mb-4">
             <div class="card-body">
                 <table class="table table-hover table-bordered">
@@ -50,10 +24,7 @@
                                 <td>{{ turno.hora_creacion_turno }}</td>
                                 <td>
                                     <a href="{% url 'editar_turno' turno.id %}" class="btn btn-warning btn-sm">Editar</a>
-                                    <form action="{% url 'eliminar_turno' turno.id %}" method="POST" style="display:inline;">
-                                        {% csrf_token %}
-                                        <button type="submit" class="btn btn-danger btn-sm">Eliminar</button>
-                                    </form>
+                                    <a href="{% url 'eliminar_turno' turno.id %}" class="btn btn-danger btn-sm">Eliminar</a>
                                 </td>
                             </tr>
                         {% endfor %}
@@ -66,10 +37,5 @@
                 <i class="fas fa-plus"></i> Crear nuevo turno
             </a>
         </div>
-    </div>
-
-    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.0.7/dist/umd/popper.min.js"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-</body>
-</html>
+</div>
+{% endblock %}
